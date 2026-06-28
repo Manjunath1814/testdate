@@ -42,7 +42,7 @@ googleBtn.addEventListener("click", async () => {
 
   try {
 
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithRedirect(auth, provider);
 
     const user = result.user;
 
