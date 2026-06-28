@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithRedirect
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
