@@ -1,76 +1,88 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { auth, db, storage } from "./firebase.js";
 
 import {
-    getAuth
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
-    getFirestore,
     doc,
-    updateDoc
+    setDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import {
-    getStorage,
     ref,
     uploadBytes,
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBK8VWsNWnDFEHQa-tSY7rFxQz6zbIKVEo",
-  authDomain: "testdate-64ee3.firebaseapp.com",
-  projectId: "testdate-64ee3",
-  storageBucket: "testdate-64ee3.firebasestorage.app",
-  messagingSenderId: "212768048889",
-  appId: "1:212768048889:web:468dc2026122b7b172c428",
-  measurementId: "G-H7B0670KW0"
-};
+const form = document.getElementById("profileForm");
 
-const app = initializeApp(firebaseConfig);
+const imageInput = document.getElementById("profileImage");
 
-const auth = getAuth(app);
+const preview = document.getElementById("previewImage");
 
-const db = getFirestore(app);
+const nameInput = document.getElementById("name");
 
-const storage = getStorage(app);
+const locationBtn = document.getElementById("locationBtn");
 
-import {
-  getAuth,
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+const locationText = document.getElementById("locationText");
 
-const auth = getAuth(app);
+const continueBtn = document.getElementById("continueBtn");
 
 let currentUser = null;
 
-onAuthStateChanged(auth, (user) => {
+let latitude = "";
 
-    if (user) {
+let longitude = "";
 
-        currentUser = user;
+imageInput.addEventListener("change", () => {
 
-        document.getElementById("name").value = user.displayName || "";
+    const file = imageInput.files[0];
 
-    } else {
+    if(file){
 
-        window.location.href = "index.html";
+        preview.src = URL.createObjectURL(file);
 
     }
 
 });
-locationBtn.onclick = ()=>{
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(!user){
+
+        window.location.href="index.html";
+
+        return;
+
+    }
+
+    currentUser=user;
+
+    nameInput.value=user.displayName || "";
+
+});
+
+locationBtn.addEventListener("click",()=>{
+
+    if(!navigator.geolocation){
+
+        alert("Geolocation not supported");
+
+        return;
+
+    }
 
     navigator.geolocation.getCurrentPosition(
 
         (position)=>{
 
-            latitude = position.coords.latitude;
+            latitude=position.coords.latitude;
 
-            longitude = position.coords.longitude;
+            longitude=position.coords.longitude;
 
-            locationText.innerHTML = "Location Added ✓";
+            locationText.innerHTML="✅ Location Added";
 
         },
 
@@ -82,66 +94,92 @@ locationBtn.onclick = ()=>{
 
     );
 
-};
-
-document.getElementById("profileForm").addEventListener("submit",async(e)=>{
-
-e.preventDefault();
-
-if(!user){
-
-alert("Please login again");
-
-return;
-
-}
-
-const file = imageInput.files[0];
-
-if(!file){
-
-alert("Please upload profile photo");
-
-return;
-
-}
-
-const storageRef = ref(storage,"profiles/"+currentuser.uid);
-
-await uploadBytes(storageRef,file);
-
-const photoURL = await getDownloadURL(storageRef);
-
-const gender = document.querySelector("input[name='gender']:checked");
-
-if(!gender){
-
-alert("Select gender");
-
-return;
-
-}
-
-await updateDoc(doc(db,"users",currentuser.uid),{
-
-name:document.getElementById("name").value,
-
-photo:photoURL,
-
-gender:gender.value,
-
-dob:document.getElementById("dob").value,
-
-lookingFor:document.getElementById("lookingFor").value,
-
-latitude:latitude,
-
-longitude:longitude,
-
-profileCompleted:true
-
 });
 
-window.location.href="home.html";
+form.addEventListener("submit",async(e)=>{
+
+    e.preventDefault();
+
+    if(!currentUser){
+
+        alert("Please login again");
+
+        return;
+
+    }
+
+    const gender=document.querySelector("input[name='gender']:checked");
+
+    if(!gender){
+
+        alert("Select Gender");
+
+        return;
+
+    }
+
+    const file=imageInput.files[0];
+
+    if(!file){
+
+        alert("Upload Profile Picture");
+
+        return;
+
+    }
+
+    continueBtn.disabled=true;
+
+    continueBtn.innerHTML="Saving...";
+
+    try{
+
+        const storageRef=ref(storage,"profiles/"+currentUser.uid+".jpg");
+
+        await uploadBytes(storageRef,file);
+
+        const photoURL=await getDownloadURL(storageRef);
+
+        await setDoc(doc(db,"users",currentUser.uid),{
+
+            uid:currentUser.uid,
+
+            name:nameInput.value,
+
+            email:currentUser.email,
+
+            photo:photoURL,
+
+            gender:gender.value,
+
+            dob:document.getElementById("dob").value,
+
+            lookingFor:document.getElementById("lookingFor").value,
+
+            latitude:latitude,
+
+            longitude:longitude,
+
+            profileCompleted:true,
+
+            updatedAt:serverTimestamp()
+
+        },{merge:true});
+
+        window.location.href="home.html";
+
+    }
+
+    catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+        continueBtn.disabled=false;
+
+        continueBtn.innerHTML="Continue";
+
+    }
 
 });
