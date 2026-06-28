@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Messages</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--white:#ffffff;
+--grey:#a8a8a8;
+--border:rgba(255,255,255,.08);
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--white);
+height:100vh;
+overflow:hidden;
+
+}
+
+a{
+
+text-decoration:none;
+color:inherit;
+
+}
+
+button{
+
+border:none;
+outline:none;
+background:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:4px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#7A3CFF;
+border-radius:30px;
+
+}
+
+/* ===========================
+TOP BAR
+=========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:72px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 16px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.left{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.04);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 18px rgba(122,60,255,.4);
+
+}
+
+.profile{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.profile img{
+
+width:46px;
+height:46px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+}
+
+.name{
+
+font-size:17px;
+font-weight:600;
+
+}
+
+.status{
+
+font-size:12px;
+color:#52ff8d;
+
+margin-top:2px;
+
+}
+
+.right{
+
+display:flex;
+align-items:center;
+gap:8px;
+
+}
+
+/* =======================
+CHAT AREA
+======================= */
+
+.chat-container{
+
+position:fixed;
+
+top:72px;
+bottom:82px;
+left:0;
+right:0;
+
+overflow-y:auto;
+
+padding:18px;
+
+display:flex;
+flex-direction:column;
+gap:14px;
+
+background:#050505;
+
+}
+
+.date{
+
+align-self:center;
+
+padding:8px 16px;
+
+font-size:12px;
+
+border-radius:30px;
+
+background:#171717;
+
+color:#bfbfbf;
+
+}
+
+.message{
+
+max-width:78%;
+
+padding:14px 16px;
+
+border-radius:22px;
+
+font-size:14px;
+
+line-height:1.6;
+
+animation:fade .3s ease;
+
+word-wrap:break-word;
+
+}
+
+.received{
+
+align-self:flex-start;
+
+background:#171717;
+
+border:1px solid rgba(255,255,255,.05);
+
+border-bottom-left-radius:8px;
+
+}
+
+.sent{
+
+align-self:flex-end;
+
+background:linear-gradient(135deg,#7A3CFF,#9d74ff);
+
+border-bottom-right-radius:8px;
+
+color:white;
+
+}
+
+.time{
+
+display:block;
+
+margin-top:8px;
+
+font-size:11px;
+
+opacity:.75;
+
+text-align:right;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+/* ==========================
+MESSAGE INPUT BAR
+========================== */
+
+.input-area{
+
+position:fixed;
+
+left:0;
+right:0;
+bottom:0;
+
+height:82px;
+
+padding:12px 14px;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+background:rgba(8,8,8,.95);
+
+backdrop-filter:blur(18px);
+
+border-top:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.input-box{
+
+flex:1;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+padding:0 16px;
+
+height:54px;
+
+border-radius:30px;
+
+background:#151515;
+
+border:1px solid rgba(255,255,255,.06);
+
+}
+
+.input-box input{
+
+flex:1;
+
+background:transparent;
+
+border:none;
+
+outline:none;
+
+color:#fff;
+
+font-size:15px;
+
+}
+
+.input-box input::placeholder{
+
+color:#8b8b8b;
+
+}
+
+.send-btn{
+
+width:56px;
+height:56px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+box-shadow:0 0 20px rgba(122,60,255,.45);
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.send-btn:hover{
+
+transform:scale(1.05);
+
+}
+
+@media(min-width:768px){
+
+.chat-container{
+
+max-width:700px;
+
+margin:auto;
+
+left:0;
+right:0;
+
+}
+
+.input-area{
+
+max-width:700px;
+
+margin:auto;
+
+left:0;
+right:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<div class="left">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="profile">
+
+<img src="https://picsum.photos/200?random=10">
+
+<div>
+
+<div class="name">
+Sophia
+</div>
+
+<div class="status">
+Online
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<button class="icon-btn">
+
+<span class="material-symbols-rounded">
+call
+</span>
+
+</button>
+
+<button class="icon-btn">
+
+<span class="material-symbols-rounded">
+videocam
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+<div class="chat-container">
+
+<div class="date">
+Today
+</div>
+
+<div class="message received">
+Hi 👋
+<span class="time">10:30 AM</span>
+</div>
+
+<div class="message sent">
+Hello 😊
+<span class="time">10:31 AM</span>
+</div>
+
+<div class="message received">
+How are you?
+<span class="time">10:31 AM</span>
+</div>
+
+<div class="message sent">
+I'm doing great. What about you?
+<span class="time">10:32 AM</span>
+</div>
+
+<div class="message received">
+Doing well 😄
+<span class="time">10:33 AM</span>
+</div>
+
+<div class="message sent">
+Want to grab a coffee this weekend?
+<span class="time">10:34 AM</span>
+</div>
+
+<div class="message received">
+Sure ❤️
+<span class="time">10:35 AM</span>
+</div>
+
+<div class="message received">
+Saturday evening?
+<span class="time">10:35 AM</span>
+</div>
+
+<div class="message sent">
+Perfect ☕
+<span class="time">10:36 AM</span>
+</div>
+
+<div class="message received">
+See you then 😊
+<span class="time">10:37 AM</span>
+</div>
+
+</div>
+
+<div class="input-area">
+
+<div class="input-box">
+
+<span class="material-symbols-rounded">
+emoji_emotions
+</span>
+
+<input
+type="text"
+placeholder="Type a message...">
+
+<span class="material-symbols-rounded">
+attach_file
+</span>
+
+</div>
+
+<button class="send-btn">
+
+<span class="material-symbols-rounded">
+send
+</span>
+
+</button>
+
+</div>
+
+</body>
+
+</html>
