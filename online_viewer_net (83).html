@@ -1,0 +1,832 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+        rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        body{
+            background:#050505;
+            color:#fff;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+
+        a{
+            text-decoration:none;
+            color:inherit;
+        }
+
+        button{
+            border:none;
+            outline:none;
+            cursor:pointer;
+            font-family:inherit;
+        }
+
+        img{
+            width:100%;
+            display:block;
+        }
+
+        :root{
+
+            --bg:#050505;
+            --card:#121212;
+            --purple:#7A3CFF;
+            --purple2:#9E74FF;
+            --white:#ffffff;
+            --grey:#a6a6a6;
+            --glass:rgba(255,255,255,.05);
+            --border:rgba(255,255,255,.08);
+
+        }
+
+        /* Scrollbar */
+
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+
+        ::-webkit-scrollbar-track{
+            background:#090909;
+        }
+
+        ::-webkit-scrollbar-thumb{
+            background:var(--purple);
+            border-radius:30px;
+        }
+
+        /* =========================
+           APP BAR
+        ========================== */
+
+        .top-bar{
+
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:72px;
+
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+
+            padding:0 18px;
+
+            backdrop-filter:blur(18px);
+            background:rgba(5,5,5,.82);
+
+            border-bottom:1px solid rgba(255,255,255,.05);
+
+            z-index:999;
+        }
+
+        .icon-btn{
+
+            width:46px;
+            height:46px;
+
+            display:flex;
+            align-items:center;
+            justify-content:center;
+
+            border-radius:50%;
+
+            background:rgba(255,255,255,.04);
+
+            transition:.35s;
+
+        }
+
+        .icon-btn:hover{
+
+            background:rgba(122,60,255,.25);
+            transform:scale(1.06);
+
+            box-shadow:0 0 18px rgba(122,60,255,.4);
+
+        }
+
+        .material-symbols-rounded{
+
+            font-size:27px;
+            color:white;
+
+        }
+
+        .logo{
+
+            font-size:22px;
+            font-weight:700;
+            letter-spacing:.8px;
+
+            color:#fff;
+
+            text-shadow:0 0 20px rgba(122,60,255,.45);
+
+        }
+
+        /* ======================
+        DRAWER
+        ======================= */
+
+        .drawer{
+
+            position:fixed;
+
+            top:0;
+            left:-320px;
+
+            width:280px;
+            height:100vh;
+
+            background:#101010;
+
+            backdrop-filter:blur(20px);
+
+            border-right:1px solid rgba(255,255,255,.08);
+
+            transition:.45s ease;
+
+            z-index:1200;
+
+            overflow:auto;
+
+        }
+
+        .drawer.active{
+
+            left:0;
+
+        }
+
+        .drawer-header{
+
+            display:flex;
+            align-items:center;
+
+            gap:14px;
+
+            padding:22px;
+
+            border-bottom:1px solid rgba(255,255,255,.06);
+
+        }
+
+        .drawer-header h3{
+
+            font-size:20px;
+            font-weight:600;
+
+        }
+
+        .drawer ul{
+
+            list-style:none;
+            padding:22px 18px;
+
+        }
+
+        .drawer ul li{
+
+            margin-bottom:14px;
+
+        }
+
+        .drawer ul li a{
+
+            display:flex;
+            align-items:center;
+            gap:15px;
+
+            padding:16px;
+
+            border-radius:18px;
+
+            background:transparent;
+
+            transition:.3s;
+
+            font-weight:500;
+
+        }
+
+        .drawer ul li a:hover{
+
+            background:rgba(122,60,255,.18);
+
+            box-shadow:0 0 18px rgba(122,60,255,.25);
+
+            transform:translateX(5px);
+
+        }
+
+        /* Overlay */
+
+        .overlay{
+
+            position:fixed;
+
+            inset:0;
+
+            background:rgba(0,0,0,.72);
+
+            backdrop-filter:blur(4px);
+
+            opacity:0;
+            visibility:hidden;
+
+            transition:.35s;
+
+            z-index:1100;
+
+        }
+
+        .overlay.show{
+
+            opacity:1;
+            visibility:visible;
+
+        }
+
+        /* ======================
+        MAIN
+        ======================= */
+
+        main{
+
+            padding-top:92px;
+            padding-left:18px;
+            padding-right:18px;
+            padding-bottom:110px;
+
+        }
+
+        /* =====================
+        FILTER BUTTON
+        ====================== */
+
+        .filter-row{
+
+            display:flex;
+            justify-content:flex-end;
+
+            margin-bottom:20px;
+
+        }
+
+        .filter-btn{
+
+            display:flex;
+            align-items:center;
+            gap:8px;
+
+            padding:12px 18px;
+
+            border-radius:30px;
+
+            color:white;
+
+            background:linear-gradient(135deg,#7A3CFF,#5d26d9);
+
+            box-shadow:0 0 25px rgba(122,60,255,.35);
+
+            transition:.35s;
+
+            font-size:15px;
+
+            font-weight:600;
+
+        }
+
+        .filter-btn:hover{
+
+            transform:translateY(-2px);
+
+            box-shadow:0 0 30px rgba(122,60,255,.6);
+
+        }
+
+        /* ==========================
+        USERS GRID
+        =========================== */
+
+        .users-container{
+
+            display:grid;
+            gap:20px;
+
+        }
+
+        .user-card{
+
+            background:rgba(18,18,18,.88);
+
+            border:1px solid rgba(255,255,255,.08);
+
+            backdrop-filter:blur(20px);
+
+            border-radius:24px;
+
+            overflow:hidden;
+
+            transition:.35s;
+
+            animation:fadeUp .6s ease;
+
+        }
+
+        .user-card:hover{
+
+            transform:translateY(-6px);
+
+            box-shadow:0 0 30px rgba(122,60,255,.28);
+
+            border-color:rgba(122,60,255,.35);
+
+        }
+
+        .user-photo{
+
+            width:100%;
+            height:250px;
+
+            object-fit:cover;
+
+            background:#1a1a1a;
+
+        }
+
+        .user-content{
+
+            padding:20px;
+
+        }
+
+        .user-name{
+
+            font-size:22px;
+            font-weight:700;
+
+        }
+
+        .user-meta{
+
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+
+            margin-top:12px;
+
+        }
+
+        .chip{
+
+            padding:8px 14px;
+
+            border-radius:40px;
+
+            background:rgba(122,60,255,.12);
+
+            color:#ddd;
+
+            font-size:13px;
+
+            border:1px solid rgba(122,60,255,.22);
+
+        }
+
+        .view-btn{
+
+            width:100%;
+
+            margin-top:18px;
+
+            padding:15px;
+
+            border-radius:16px;
+
+            background:linear-gradient(135deg,#7A3CFF,#965eff);
+
+            color:white;
+
+            font-weight:600;
+
+            transition:.3s;
+
+        }
+
+        .view-btn:hover{
+
+            transform:translateY(-2px);
+
+            box-shadow:0 0 22px rgba(122,60,255,.5);
+
+        }
+
+        @keyframes fadeUp{
+
+            from{
+
+                opacity:0;
+                transform:translateY(30px);
+
+            }
+
+            to{
+
+                opacity:1;
+                transform:translateY(0);
+
+            }
+
+        }
+
+        @media(min-width:768px){
+
+            .users-container{
+
+                grid-template-columns:repeat(2,1fr);
+
+            }
+
+        }
+
+        @media(min-width:1100px){
+
+            .users-container{
+
+                grid-template-columns:repeat(3,1fr);
+
+            }
+
+        }
+
+        /* =========================
+           FILTER MODAL
+        ========================= */
+
+        .filter-modal{
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.72);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: .35s;
+            z-index: 1500;
+            padding: 20px;
+        }
+
+        .filter-modal.active{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filter-card{
+            width: 100%;
+            max-width: 420px;
+            background: rgba(18,18,18,.95);
+            border: 1px solid rgba(255,255,255,.08);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 24px;
+            animation: fadeUp .35s ease;
+        }
+
+        .filter-title{
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .filter-group{
+            margin-bottom: 24px;
+        }
+
+        .filter-group h4{
+            margin-bottom: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .option-list{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .option-list label{
+            flex: 1 1 calc(50% - 8px);
+            min-width: 120px;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .option-list label:hover{
+            border-color: #7A3CFF;
+            background: rgba(122,60,255,.12);
+        }
+
+        .option-list input{
+            accent-color: #7A3CFF;
+        }
+
+        .apply-filter{
+            width: 100%;
+            margin-top: 10px;
+            padding: 16px;
+            border-radius: 18px;
+            border: none;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(135deg,#7A3CFF,#9C6DFF);
+            box-shadow: 0 0 20px rgba(122,60,255,.35);
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .apply-filter:hover{
+            transform: translateY(-2px);
+            box-shadow: 0 0 28px rgba(122,60,255,.55);
+        }
+
+        /* =========================
+           BOTTOM NAVIGATION
+        ========================= */
+
+        .bottom-nav{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 76px;
+            background: rgba(10,10,10,.92);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,.08);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .nav-item{
+            text-decoration: none;
+            color: #9f9f9f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .nav-item .material-symbols-rounded{
+            font-size: 26px;
+        }
+
+        .nav-item.active{
+            color: #7A3CFF;
+        }
+
+        .nav-item.active .material-symbols-rounded{
+            color: #7A3CFF;
+            text-shadow: 0 0 15px rgba(122,60,255,.8);
+        }
+
+        .nav-item:hover{
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Drawer Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Left Drawer -->
+    <aside class="drawer" id="drawer">
+
+        <div class="drawer-header">
+            <button class="icon-btn" id="closeDrawer">
+                <span class="material-symbols-rounded">arrow_back</span>
+            </button>
+            <h3>Menu</h3>
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="home.html">
+                    <span class="material-symbols-rounded">home</span>
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="chats.html">
+                    <span class="material-symbols-rounded">chat</span>
+                    Chats
+                </a>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <span class="material-symbols-rounded">person</span>
+                    Profile
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="logoutBtn">
+                    <span class="material-symbols-rounded">logout</span>
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Top Bar -->
+
+    <header class="top-bar">
+
+        <button class="icon-btn" id="menuBtn">
+            <span class="material-symbols-rounded">menu</span>
+        </button>
+
+        <div class="logo">
+            Dating
+        </div>
+
+        <button class="icon-btn" id="notificationBtn">
+            <span class="material-symbols-rounded">
+                notifications
+            </span>
+        </button>
+
+    </header>
+
+    <main>
+
+        <div class="filter-row">
+
+            <button class="filter-btn" id="filterBtn">
+
+                <span class="material-symbols-rounded">
+                    tune
+                </span>
+
+                Filter
+
+            </button>
+
+        </div>
+
+        <!-- User cards will be inserted here by home.js -->
+
+        <div class="users-container" id="usersContainer">
+
+        </div>
+
+    </main>
+
+    <!-- Filter Modal -->
+
+    <div class="filter-modal" id="filterModal">
+
+        <div class="filter-card">
+
+            <div class="filter-title">
+                Filters
+            </div>
+
+            <div class="filter-group">
+
+                <h4>Gender Preference</h4>
+
+                <div class="option-list">
+
+                    <label>
+                        <input type="radio"
+                               name="gender"
+                               value="Men">
+                        Men
+                    </label>
+
+                    <label>
+                        <input type="radio"
+                               name="gender"
+                               value="Women">
+                        Women
+                    </label>
+
+                    <label>
+                        <input type="radio"
+                               name="gender"
+                               value="Everyone"
+                               checked>
+                        Everyone
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="filter-group">
+
+                <h4>Radius</h4>
+
+                <div class="option-list">
+
+                    <label><input type="radio" name="radius" value="5">5 km</label>
+
+                    <label><input type="radio" name="radius" value="10">10 km</label>
+
+                    <label><input type="radio" name="radius" value="20" checked>20 km</label>
+
+                    <label><input type="radio" name="radius" value="50">50 km</label>
+
+                    <label><input type="radio" name="radius" value="100">100 km</label>
+
+                </div>
+
+            </div>
+
+            <button class="apply-filter" id="applyFilter">
+                Apply Filter
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+
+    <nav class="bottom-nav">
+
+        <a href="home.html" class="nav-item active">
+            <span class="material-symbols-rounded">home</span>
+            <span>Home</span>
+        </a>
+
+        <a href="chats.html" class="nav-item">
+            <span class="material-symbols-rounded">chat</span>
+            <span>Chats</span>
+        </a>
+
+        <a href="profile.html" class="nav-item">
+            <span class="material-symbols-rounded">person</span>
+            <span>Profile</span>
+        </a>
+
+    </nav>
+
+    <script type="module" src="home.js"></script>
+    
+</body>
+</html>
