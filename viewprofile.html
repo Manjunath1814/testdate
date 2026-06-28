@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>View Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purpleLight:#A779FF;
+--text:#ffffff;
+--grey:#a0a0a0;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+img{
+
+display:block;
+width:100%;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--purple);
+border-radius:20px;
+
+}
+
+/* ===========================
+APP BAR
+=========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 16px;
+
+background:rgba(5,5,5,.9);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.icon-btn{
+
+width:45px;
+height:45px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 18px rgba(122,60,255,.45);
+
+}
+
+/* ===========================
+PROFILE IMAGE
+=========================== */
+
+.cover{
+
+margin-top:70px;
+
+position:relative;
+
+height:420px;
+
+overflow:hidden;
+
+}
+
+.cover img{
+
+width:100%;
+height:100%;
+
+object-fit:cover;
+
+}
+
+.cover::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+right:0;
+bottom:0;
+
+height:180px;
+
+background:linear-gradient(transparent,#050505);
+
+}
+
+.profile-info{
+
+position:relative;
+
+margin-top:-70px;
+
+padding:20px;
+
+z-index:5;
+
+}
+
+.name{
+
+font-size:32px;
+
+font-weight:700;
+
+}
+
+.age{
+
+font-size:20px;
+
+color:#dcdcdc;
+
+margin-top:4px;
+
+}
+
+.badges{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:18px;
+
+}
+
+.badge{
+
+padding:10px 16px;
+
+border-radius:30px;
+
+background:rgba(122,60,255,.15);
+
+border:1px solid rgba(122,60,255,.25);
+
+font-size:14px;
+
+}
+
+.section{
+
+margin:24px 20px;
+
+padding:20px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.05);
+
+border-radius:22px;
+
+}
+
+.section h3{
+
+font-size:18px;
+
+margin-bottom:14px;
+
+}
+
+.section p{
+
+line-height:1.8;
+
+color:#c5c5c5;
+
+font-size:15px;
+
+}
+
+.chips{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:10px;
+
+}
+
+.chip{
+
+padding:10px 16px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:30px;
+
+font-size:14px;
+
+}
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:15px;
+
+}
+
+.gallery img{
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:18px;
+
+transition:.3s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.03);
+
+}
+
+.actions{
+
+position:sticky;
+
+bottom:0;
+
+display:flex;
+
+gap:14px;
+
+padding:16px;
+
+background:rgba(5,5,5,.95);
+
+backdrop-filter:blur(18px);
+
+border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+.like-btn{
+
+flex:1;
+
+height:58px;
+
+border-radius:18px;
+
+font-size:17px;
+
+font-weight:600;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:#fff;
+
+box-shadow:0 0 20px rgba(122,60,255,.45);
+
+}
+
+.chat-btn{
+
+flex:1;
+
+height:58px;
+
+border-radius:18px;
+
+font-size:17px;
+
+font-weight:600;
+
+background:#222;
+
+color:#8b8b8b;
+
+}
+
+.chat-btn.enabled{
+
+background:#00b894;
+
+color:#fff;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:600px;
+
+margin:auto;
+
+}
+
+}
+  </style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <button class="icon-btn" onclick="history.back()">
+        <span class="material-symbols-rounded">
+            arrow_back
+        </span>
+    </button>
+
+    <h2>Profile</h2>
+
+    <button class="icon-btn">
+        <span class="material-symbols-rounded">
+            more_vert
+        </span>
+    </button>
+
+</header>
+
+<div class="cover">
+
+    <img src="https://picsum.photos/700/900?random=50" alt="Profile">
+
+</div>
+
+<div class="profile-info">
+
+    <div class="name">
+        Sophia Johnson
+    </div>
+
+    <div class="age">
+        24 Years
+    </div>
+
+    <div class="badges">
+
+        <div class="badge">
+            👩 Female
+        </div>
+
+        <div class="badge">
+            📍 4 km Away
+        </div>
+
+        <div class="badge">
+            ❤️ Looking for Men
+        </div>
+
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h3>About Me</h3>
+
+    <p>
+        Coffee lover ☕ • Traveller ✈️ • Fitness enthusiast 💪 •
+        Looking for genuine conversations, meaningful connections,
+        and someone to explore life with.
+    </p>
+
+</div>
+
+<div class="section">
+
+    <h3>Interests</h3>
+
+    <div class="chips">
+
+        <div class="chip">Travel</div>
+        <div class="chip">Gym</div>
+        <div class="chip">Movies</div>
+        <div class="chip">Music</div>
+        <div class="chip">Photography</div>
+        <div class="chip">Cooking</div>
+        <div class="chip">Coffee</div>
+        <div class="chip">Dogs</div>
+
+    </div>
+
+</div>
+
+<div class="section">
+
+    <h3>Gallery</h3>
+
+    <div class="gallery">
+
+        <img src="https://picsum.photos/400?random=61">
+        <img src="https://picsum.photos/400?random=62">
+        <img src="https://picsum.photos/400?random=63">
+        <img src="https://picsum.photos/400?random=64">
+
+    </div>
+
+</div>
+
+<div style="height:100px;"></div>
+
+<div class="actions">
+
+    <button
+        class="like-btn"
+        id="likeBtn">
+
+        ❤️ Like
+
+    </button>
+
+    <button
+        class="chat-btn"
+        id="chatBtn"
+        disabled>
+
+        💬 Chat
+
+    </button>
+
+</div>
+
+<script>
+
+const likeBtn=document.getElementById("likeBtn");
+
+const chatBtn=document.getElementById("chatBtn");
+
+let liked=false;
+
+likeBtn.onclick=function(){
+
+if(!liked){
+
+liked=true;
+
+likeBtn.innerHTML="❤️ Liked";
+
+likeBtn.style.background="linear-gradient(135deg,#ff2d55,#ff5e7e)";
+
+chatBtn.disabled=false;
+
+chatBtn.classList.add("enabled");
+
+}
+
+};
+
+chatBtn.onclick=function(){
+
+if(liked){
+
+window.location.href="messages.html?id=user1";
+
+}
+
+};
+
+</script>
+
+</body>
+
+</html>
