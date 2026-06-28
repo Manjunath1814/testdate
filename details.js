@@ -18,24 +18,16 @@ uploadBytes,
 getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-
-apiKey:"YOUR_API_KEY",
-
-authDomain:"YOUR_AUTH_DOMAIN",
-
-projectId:"YOUR_PROJECT_ID",
-
-storageBucket:"YOUR_STORAGE_BUCKET",
-
-messagingSenderId:"YOUR_SENDER_ID",
-
-appId:"YOUR_APP_ID",
-
-measurementId:"YOUR_MEASUREMENT_ID"
-
+  apiKey: "AIzaSyBK8VWsNWnDFEHQa-tSY7rFxQz6zbIKVEo",
+  authDomain: "testdate-64ee3.firebaseapp.com",
+  projectId: "testdate-64ee3",
+  storageBucket: "testdate-64ee3.firebasestorage.app",
+  messagingSenderId: "212768048889",
+  appId: "1:212768048889:web:468dc2026122b7b172c428",
+  measurementId: "G-H7B0670KW0"
 };
-
 const app=initializeApp(firebaseConfig);
 
 const auth=getAuth(app);
