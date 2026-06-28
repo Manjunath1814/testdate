@@ -76,7 +76,7 @@ googleBtn.addEventListener("click", async () => {
 
     }
 
-    window.location.href = "home.html";
+    window.location.href = "details.html";
 
   }
 
