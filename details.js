@@ -36,38 +36,30 @@ const db = getFirestore(app);
 
 const storage = getStorage(app);
 
-const user = auth.currentUser;
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-const imageInput = document.getElementById("profileImage");
+const auth = getAuth(app);
 
-const preview = document.getElementById("previewImage");
+let currentUser = null;
 
-const locationBtn = document.getElementById("locationBtn");
+onAuthStateChanged(auth, (user) => {
 
-const locationText = document.getElementById("locationText");
+    if (user) {
 
-let latitude = "";
+        currentUser = user;
 
-let longitude = "";
+        document.getElementById("name").value = user.displayName || "";
 
-imageInput.onchange = () => {
+    } else {
 
-    const file = imageInput.files[0];
-
-    if(file){
-
-        preview.src = URL.createObjectURL(file);
+        window.location.href = "index.html";
 
     }
 
-};
-
-if(user){
-
-    document.getElementById("name").value = user.displayName || "";
-
-}
-
+});
 locationBtn.onclick = ()=>{
 
     navigator.geolocation.getCurrentPosition(
