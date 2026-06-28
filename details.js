@@ -106,7 +106,7 @@ return;
 
 }
 
-const storageRef = ref(storage,"profiles/"+user.uid);
+const storageRef = ref(storage,"profiles/"+currentuser.uid);
 
 await uploadBytes(storageRef,file);
 
@@ -122,7 +122,7 @@ return;
 
 }
 
-await updateDoc(doc(db,"users",user.uid),{
+await updateDoc(doc(db,"users",currentuser.uid),{
 
 name:document.getElementById("name").value,
 
