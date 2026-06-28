@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithRedirect
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
@@ -42,7 +42,7 @@ googleBtn.addEventListener("click", async () => {
 
   try {
 
-    const result = await signInWithRedirect(auth, provider);
+    const result = await signInWithPopup(auth, provider);
 
     const user = result.user;
 
