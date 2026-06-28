@@ -97,6 +97,7 @@ alert("Please allow location permission.");
 document.getElementById("profileForm").addEventListener("submit",async(e)=>{
 
 e.preventDefault();
+  try {
 
 const user=auth.currentUser;
 
@@ -156,6 +157,14 @@ longitude
 
 });
 
-location.href="home.html";
+location.href = "home.html";
+
+} catch (error) {
+
+    console.error(error);
+
+    alert(error.code + "\n" + error.message);
+
+}
 
 });
