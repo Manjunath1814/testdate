@@ -1,93 +1,84 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { auth, db } from "./firebase.js";
 
 import {
-  getAuth,
   GoogleAuthProvider,
   signInWithPopup
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
-  getFirestore,
   doc,
   getDoc,
   setDoc,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const firebaseConfig = {
-
-  apiKey: "AIzaSyBK8VWsNWnDFEHQa-tSY7rFxQz6zbIKVEo",
-  authDomain: "testdate-64ee3.firebaseapp.com",
-  projectId: "testdate-64ee3",
-  storageBucket: "testdate-64ee3.firebasestorage.app",
-  messagingSenderId: "212768048889",
-  appId: "1:212768048889:web:468dc2026122b7b172c428",
-  measurementId: "G-H7B0670KW0"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+const googleBtn = document.getElementById("googleBtn");
 
 const provider = new GoogleAuthProvider();
 
-const googleBtn = document.getElementById("googleBtn");
-
 googleBtn.addEventListener("click", async () => {
 
-  googleBtn.disabled = true;
-  googleBtn.innerHTML = "Signing in...";
+    googleBtn.disabled = true;
+    googleBtn.innerHTML = "Signing In...";
 
-  try {
+    try{
 
-    const result = await signInWithPopup(auth, provider);
+        const result = await signInWithPopup(auth, provider);
 
-    const user = result.user;
+        const user = result.user;
 
-    const userRef = doc(db, "users", user.uid);
+        const userRef = doc(db,"users",user.uid);
 
-    const snap = await getDoc(userRef);
+        const snap = await getDoc(userRef);
 
-    if (!snap.exists()) {
+        if(!snap.exists()){
 
-      await setDoc(userRef, {
+            await setDoc(userRef,{
 
-        uid: user.uid,
+                uid:user.uid,
 
-        name: user.displayName,
+                email:user.email,
 
-        email: user.email,
+                name:user.displayName,
 
-        photo: user.photoURL,
+                photo:user.photoURL,
 
-        createdAt: serverTimestamp(),
+                profileCompleted:false,
 
-        bio: "",
+                createdAt:serverTimestamp()
 
-        age: "",
+            });
 
-        gender: "",
+            window.location.href="details.html";
 
-        location: ""
+            return;
 
-      });
+        }
+
+        const data = snap.data();
+
+        if(data.profileCompleted){
+
+            window.location.href="home.html";
+
+        }else{
+
+            window.location.href="details.html";
+
+        }
 
     }
 
-    window.location.href = "details.html";
+    catch(error){
 
-  }
+        console.log(error);
 
-  catch (error) {
+        alert(error.message);
 
-    alert(error.message);
+        googleBtn.disabled=false;
 
-    googleBtn.disabled = false;
+        googleBtn.innerHTML="Continue with Google";
 
-    googleBtn.innerHTML = "Continue with Google";
-
-  }
+    }
 
 });
