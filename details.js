@@ -201,7 +201,7 @@ window.location.href="home.html";
 
 console.error(error);
 
-alert("Something went wrong.");
+alert(error.message);
 
 loading.style.display="none";
 
