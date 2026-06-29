@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#ffffff;
+--grey:#A0A0A0;
+--border:rgba(255,255,255,.06);
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+a{
+
+text-decoration:none;
+color:inherit;
+
+}
+
+.material-symbols-rounded{
+
+font-size:25px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--purple);
+border-radius:20px;
+
+}
+
+/* ==========================
+APP BAR
+========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid var(--border);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:20px;
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 20px rgba(122,60,255,.35);
+
+}
+
+/* ==========================
+MAIN
+========================== */
+
+main{
+
+padding:90px 18px 120px;
+
+}
+
+/* ==========================
+SETTING SECTION
+========================== */
+
+.section{
+
+margin-bottom:24px;
+
+}
+
+.section-title{
+
+font-size:18px;
+
+font-weight:600;
+
+margin-bottom:14px;
+
+padding-left:4px;
+
+}
+
+.card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+overflow:hidden;
+
+}
+
+/* ==========================
+SETTING ITEM
+========================== */
+
+.item{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:18px;
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.item:last-child{
+
+border-bottom:none;
+
+}
+
+.item:hover{
+
+background:rgba(122,60,255,.08);
+
+}
+
+.left{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+.left .material-symbols-rounded{
+
+color:#A779FF;
+
+}
+
+.text h4{
+
+font-size:15px;
+
+font-weight:600;
+
+margin-bottom:4px;
+
+}
+
+.text p{
+
+font-size:12px;
+
+color:#A0A0A0;
+
+}
+
+/* ==========================
+TOGGLE SWITCH
+========================== */
+
+.switch{
+
+position:relative;
+
+display:inline-block;
+
+width:52px;
+
+height:28px;
+
+}
+
+.switch input{
+
+display:none;
+
+}
+
+.slider{
+
+position:absolute;
+
+inset:0;
+
+background:#2d2d2d;
+
+border-radius:30px;
+
+transition:.3s;
+
+}
+
+.slider:before{
+
+content:"";
+
+position:absolute;
+
+height:22px;
+
+width:22px;
+
+left:3px;
+
+top:3px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.3s;
+
+}
+
+input:checked + .slider{
+
+background:#7A3CFF;
+
+}
+
+input:checked + .slider:before{
+
+transform:translateX(24px);
+
+}
+
+/* ==========================
+BUTTONS
+========================== */
+
+.logout-btn,
+.delete-btn{
+
+width:100%;
+
+height:56px;
+
+margin-top:16px;
+
+border-radius:18px;
+
+font-size:16px;
+
+font-weight:600;
+
+}
+
+.logout-btn{
+
+background:#232323;
+
+color:#fff;
+
+}
+
+.delete-btn{
+
+background:#ff3b30;
+
+color:#fff;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+  </style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="title">
+Settings
+</div>
+
+<div style="width:44px;"></div>
+
+</header>
+
+<main>
+
+<!-- Account -->
+
+<div class="section">
+
+<div class="section-title">
+Account
+</div>
+
+<div class="card">
+
+<a class="item" href="editprofile.html">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+person
+</span>
+
+<div class="text">
+
+<h4>Edit Profile</h4>
+
+<p>Update your information</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+chevron_right
+</span>
+
+</a>
+
+<a class="item" href="premium.html">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+workspace_premium
+</span>
+
+<div class="text">
+
+<h4>Premium</h4>
+
+<p>Unlock premium features</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+chevron_right
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+<!-- Privacy -->
+
+<div class="section">
+
+<div class="section-title">
+Privacy
+</div>
+
+<div class="card">
+
+<div class="item">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+visibility
+</span>
+
+<div class="text">
+
+<h4>Show Online Status</h4>
+
+<p>Allow others to see when you're online</p>
+
+</div>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="item">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+location_on
+</span>
+
+<div class="text">
+
+<h4>Show Distance</h4>
+
+<p>Display your distance to others</p>
+
+</div>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="item">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+visibility_off
+</span>
+
+<div class="text">
+
+<h4>Hide My Profile</h4>
+
+<p>Temporarily hide your account</p>
+
+</div>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox">
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Notifications -->
+
+<div class="section">
+
+<div class="section-title">
+Notifications
+</div>
+
+<div class="card">
+
+<div class="item">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+notifications
+</span>
+
+<div class="text">
+
+<h4>Push Notifications</h4>
+
+<p>Likes, matches and messages</p>
+
+</div>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+<div class="item">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+favorite
+</span>
+
+<div class="text">
+
+<h4>Like Alerts</h4>
+
+<p>Notify when someone likes you</p>
+
+</div>
+
+</div>
+
+<label class="switch">
+
+<input type="checkbox" checked>
+
+<span class="slider"></span>
+
+</label>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Support -->
+
+<div class="section">
+
+<div class="section-title">
+Support
+</div>
+
+<div class="card">
+
+<a class="item" href="#">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+help
+</span>
+
+<div class="text">
+
+<h4>Help & Support</h4>
+
+<p>Get assistance</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+chevron_right
+</span>
+
+</a>
+
+<a class="item" href="#">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+policy
+</span>
+
+<div class="text">
+
+<h4>Privacy Policy</h4>
+
+<p>Read our privacy policy</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+chevron_right
+</span>
+
+</a>
+
+<a class="item" href="#">
+
+<div class="left">
+
+<span class="material-symbols-rounded">
+description
+</span>
+
+<div class="text">
+
+<h4>Terms & Conditions</h4>
+
+<p>Read terms of use</p>
+
+</div>
+
+</div>
+
+<span class="material-symbols-rounded">
+chevron_right
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+<button class="logout-btn">
+
+Logout
+
+</button>
+
+<button class="delete-btn">
+
+Delete Account
+
+</button>
+
+</main>
+
+</body>
+
+</html>
