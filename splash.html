@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dating</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#050505;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+overflow:hidden;
+
+}
+
+.container{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.loader{
+
+position:relative;
+
+width:150px;
+
+height:150px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.loader svg{
+
+position:absolute;
+
+width:150px;
+
+height:150px;
+
+transform:rotate(-90deg);
+
+}
+
+.loader circle{
+
+fill:none;
+
+stroke:#242424;
+
+stroke-width:6;
+
+}
+
+.loader circle.progress{
+
+stroke:#7A3CFF;
+
+stroke-linecap:round;
+
+stroke-dasharray:408;
+
+stroke-dashoffset:408;
+
+animation:loading 3s linear forwards;
+
+filter:drop-shadow(0 0 12px #7A3CFF);
+
+}
+
+.logo{
+
+width:90px;
+
+height:90px;
+
+border-radius:50%;
+
+background:#121212;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:0 0 30px rgba(122,60,255,.35);
+
+}
+
+.logo img{
+
+width:60px;
+
+height:60px;
+
+object-fit:contain;
+
+}
+
+.title{
+
+margin-top:25px;
+
+font-size:28px;
+
+font-weight:700;
+
+color:white;
+
+letter-spacing:1px;
+
+}
+
+.subtitle{
+
+margin-top:8px;
+
+color:#A0A0A0;
+
+font-size:14px;
+
+}
+
+@keyframes loading{
+
+to{
+
+stroke-dashoffset:0;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="loader">
+
+<svg>
+
+<circle
+cx="75"
+cy="75"
+r="65">
+</circle>
+
+<circle
+class="progress"
+cx="75"
+cy="75"
+r="65">
+</circle>
+
+</svg>
+
+<div class="logo">
+
+<!-- Replace with the same heart logo used on your login page -->
+<img src="images/heart.png" alt="Dating Logo">
+
+</div>
+
+</div>
+
+<div class="title">
+
+Dating
+
+</div>
+
+<div class="subtitle">
+
+Find Connections • Start Conversations
+
+</div>
+
+</div>
+
+<script>
+
+setTimeout(function(){
+
+window.location.href="index.html";
+
+},3000);
+
+</script>
+
+</body>
+
+</html>
