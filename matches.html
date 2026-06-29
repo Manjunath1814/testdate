@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matches</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#ffffff;
+--grey:#A0A0A0;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+img{
+
+width:100%;
+display:block;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#7A3CFF;
+border-radius:20px;
+
+}
+
+/* ==========================
+TOP BAR
+========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:21px;
+
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 20px rgba(122,60,255,.45);
+
+}
+
+/* ==========================
+MAIN
+========================== */
+
+main{
+
+padding:90px 18px 120px;
+
+}
+
+/* ==========================
+MATCH CARD
+========================== */
+
+.match-card{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:22px;
+
+padding:16px;
+
+margin-bottom:18px;
+
+transition:.3s;
+
+}
+
+.match-card:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 0 20px rgba(122,60,255,.20);
+
+}
+
+.match-photo{
+
+width:78px;
+
+height:78px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+flex-shrink:0;
+
+}
+
+.match-photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.match-info{
+
+flex:1;
+
+}
+
+.match-name{
+
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:5px;
+
+}
+
+.match-sub{
+
+font-size:14px;
+
+color:#bdbdbd;
+
+margin-bottom:10px;
+
+}
+
+.badges{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
+.badge{
+
+padding:7px 12px;
+
+background:rgba(122,60,255,.15);
+
+border-radius:20px;
+
+font-size:12px;
+
+}
+
+.actions{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+.chat-btn{
+
+width:90px;
+
+height:42px;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-size:14px;
+
+font-weight:600;
+
+}
+
+.profile-btn{
+
+width:90px;
+
+height:42px;
+
+border-radius:14px;
+
+background:#252525;
+
+color:white;
+
+font-size:14px;
+
+}
+
+.empty{
+
+display:none;
+
+text-align:center;
+
+padding:100px 20px;
+
+}
+
+.empty span{
+
+font-size:75px;
+
+display:block;
+
+margin-bottom:18px;
+
+color:#7A3CFF;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="title">
+
+💕 Matches
+
+</div>
+
+<button class="icon-btn">
+
+<span class="material-symbols-rounded">
+favorite
+</span>
+
+</button>
+
+</header>
+
+<main>
+
+<div class="match-card">
+
+<div class="match-photo">
+
+<img src="https://picsum.photos/300/300?random=201">
+
+</div>
+
+<div class="match-info">
+
+<div class="match-name">
+
+Sophia, 24
+
+</div>
+
+<div class="match-sub">
+
+Matched 2 hours ago ❤️
+
+</div>
+
+<div class="badges">
+
+<div class="badge">Female</div>
+
+<div class="badge">Looking For Men</div>
+
+<div class="badge">4 km Away</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="chat-btn"
+onclick="location.href='messages.html?id=user1'">
+
+Chat
+
+</button>
+
+<button
+class="profile-btn"
+onclick="location.href='viewprofile.html?id=user1'">
+
+Profile
+
+</button>
+
+</div>
+
+</div>
+
+<div class="match-card">
+
+<div class="match-photo">
+
+<img src="https://picsum.photos/300/300?random=202">
+
+</div>
+
+<div class="match-info">
+
+<div class="match-name">
+
+Alex, 26
+
+</div>
+
+<div class="match-sub">
+
+Matched Yesterday 💕
+
+</div>
+
+<div class="badges">
+
+<div class="badge">Male</div>
+
+<div class="badge">Looking For Men</div>
+
+<div class="badge">2 km Away</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="chat-btn"
+onclick="location.href='messages.html?id=user2'">
+
+Chat
+
+</button>
+
+<button
+class="profile-btn"
+onclick="location.href='viewprofile.html?id=user2'">
+
+Profile
+
+</button>
+
+</div>
+
+</div>
+
+<div class="match-card">
+
+<div class="match-photo">
+
+<img src="https://picsum.photos/300/300?random=203">
+
+</div>
+
+<div class="match-info">
+
+<div class="match-name">
+
+Emma, 23
+
+</div>
+
+<div class="match-sub">
+
+Matched This Week 💜
+
+</div>
+
+<div class="badges">
+
+<div class="badge">Female</div>
+
+<div class="badge">Looking For Everyone</div>
+
+<div class="badge">8 km Away</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="chat-btn"
+onclick="location.href='messages.html?id=user3'">
+
+Chat
+
+</button>
+
+<button
+class="profile-btn"
+onclick="location.href='viewprofile.html?id=user3'">
+
+Profile
+
+</button>
+
+</div>
+
+</div>
+
+<div class="match-card">
+
+<div class="match-photo">
+
+<img src="https://picsum.photos/300/300?random=204">
+
+</div>
+
+<div class="match-info">
+
+<div class="match-name">
+
+Ryan, 27
+
+</div>
+
+<div class="match-sub">
+
+Matched 3 days ago 💙
+
+</div>
+
+<div class="badges">
+
+<div class="badge">Male</div>
+
+<div class="badge">Looking For Women</div>
+
+<div class="badge">6 km Away</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="chat-btn"
+onclick="location.href='messages.html?id=user4'">
+
+Chat
+
+</button>
+
+<button
+class="profile-btn"
+onclick="location.href='viewprofile.html?id=user4'">
+
+Profile
+
+</button>
+
+</div>
+
+</div>
+
+<div class="empty">
+
+<span class="material-symbols-rounded">
+
+favorite
+
+</span>
+
+<h2>No Matches Yet</h2>
+
+<p style="color:#bdbdbd;margin-top:12px;">
+
+Keep exploring profiles. When two people like each other,
+they'll appear here.
+
+</p>
+
+</div>
+
+</main>
+
+</body>
+
+</html>
