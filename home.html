@@ -638,7 +638,73 @@
             color: #fff;
             transform: translateY(-2px);
         }
+/* ==========================
+LIKES & MATCHES CARDS
+========================== */
 
+.quick-actions{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:14px;
+
+margin-bottom:22px;
+
+}
+
+.quick-card{
+
+text-decoration:none;
+
+background:rgba(18,18,18,.92);
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:22px;
+
+padding:20px;
+
+text-align:center;
+
+backdrop-filter:blur(18px);
+
+transition:.35s;
+
+}
+
+.quick-card:hover{
+
+transform:translateY(-4px);
+
+border-color:#7A3CFF;
+
+box-shadow:0 0 25px rgba(122,60,255,.25);
+
+}
+
+.quick-number{
+
+font-size:30px;
+
+font-weight:700;
+
+color:#7A3CFF;
+
+margin-bottom:8px;
+
+}
+
+.quick-label{
+
+font-size:15px;
+
+font-weight:600;
+
+color:white;
+
+}
     </style>
 </head>
 
@@ -732,7 +798,41 @@ notifications
             </button>
 
         </div>
+<div class="quick-actions">
 
+<a href="likes.html" class="quick-card">
+
+<div class="quick-number">
+
+12
+
+</div>
+
+<div class="quick-label">
+
+❤️ Likes
+
+</div>
+
+</a>
+
+<a href="matches.html" class="quick-card">
+
+<div class="quick-number">
+
+5
+
+</div>
+
+<div class="quick-label">
+
+💕 Matches
+
+</div>
+
+</a>
+
+</div>
         <!-- User cards will be inserted here by home.js -->
 
         <div class="users-container" id="usersContainer">
