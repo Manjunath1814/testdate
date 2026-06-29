@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Likes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#ffffff;
+--grey:#9d9d9d;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+img{
+
+display:block;
+width:100%;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:white;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#7A3CFF;
+border-radius:20px;
+
+}
+
+/* ==========================
+TOP BAR
+========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:21px;
+
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 20px rgba(122,60,255,.45);
+
+}
+
+/* ==========================
+MAIN
+========================== */
+
+main{
+
+padding:90px 18px 120px;
+
+}
+
+/* ==========================
+LIKE CARD
+========================== */
+
+.like-card{
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:24px;
+
+overflow:hidden;
+
+margin-bottom:22px;
+
+transition:.3s;
+
+}
+
+.like-card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 0 22px rgba(122,60,255,.22);
+
+}
+
+.like-photo{
+
+height:320px;
+
+overflow:hidden;
+
+}
+
+.like-photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.like-content{
+
+padding:18px;
+
+}
+
+.like-name{
+
+font-size:24px;
+
+font-weight:700;
+
+margin-bottom:6px;
+
+}
+
+.like-details{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-bottom:15px;
+
+}
+
+.tag{
+
+padding:8px 14px;
+
+background:rgba(122,60,255,.15);
+
+border-radius:30px;
+
+font-size:13px;
+
+}
+
+.liked-time{
+
+color:#bcbcbc;
+
+font-size:13px;
+
+margin-bottom:18px;
+
+}
+
+.actions{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.action-btn{
+
+flex:1;
+
+height:50px;
+
+border-radius:16px;
+
+font-size:15px;
+
+font-weight:600;
+
+color:white;
+
+}
+
+.like-btn{
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+}
+
+.view-btn{
+
+background:#232323;
+
+}
+
+.pass-btn{
+
+background:#3b3b3b;
+
+}
+/* ==========================
+MATCH POPUP
+========================== */
+
+.match-popup{
+
+position:fixed;
+
+top:50%;
+left:50%;
+
+transform:translate(-50%,-50%) scale(.8);
+
+width:90%;
+max-width:340px;
+
+padding:30px 20px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:24px;
+
+text-align:center;
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.35s;
+
+z-index:9999;
+
+}
+
+.match-popup.show{
+
+opacity:1;
+
+visibility:visible;
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+.match-popup h2{
+
+font-size:28px;
+
+margin-bottom:12px;
+
+color:#7A3CFF;
+
+}
+
+.match-popup p{
+
+color:#cfcfcf;
+
+margin-bottom:20px;
+
+line-height:1.7;
+
+}
+
+.start-chat{
+
+width:100%;
+
+height:54px;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="title">
+
+❤️ Likes
+
+</div>
+
+<button class="icon-btn">
+
+<span class="material-symbols-rounded">
+favorite
+</span>
+
+</button>
+
+</header>
+
+<main>
+
+<div class="like-card">
+
+<div class="like-photo">
+
+<img src="https://picsum.photos/600/800?random=121">
+
+</div>
+
+<div class="like-content">
+
+<div class="like-name">
+Sophia, 24
+</div>
+
+<div class="like-details">
+
+<div class="tag">Female</div>
+
+<div class="tag">Looking For Men</div>
+
+<div class="tag">4 km Away</div>
+
+</div>
+
+<div class="liked-time">
+❤️ Liked you 5 minutes ago
+</div>
+
+<div class="actions">
+
+<button class="action-btn like-btn" onclick="showMatch()">
+
+❤️ Like Back
+
+</button>
+
+<button class="action-btn view-btn" onclick="location.href='viewprofile.html?id=user1'">
+
+👁 View
+
+</button>
+
+<button class="action-btn pass-btn">
+
+❌ Pass
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="like-card">
+
+<div class="like-photo">
+
+<img src="https://picsum.photos/600/800?random=122">
+
+</div>
+
+<div class="like-content">
+
+<div class="like-name">
+Alex, 26
+</div>
+
+<div class="like-details">
+
+<div class="tag">Male</div>
+
+<div class="tag">Looking For Men</div>
+
+<div class="tag">2 km Away</div>
+
+</div>
+
+<div class="liked-time">
+❤️ Liked you 18 minutes ago
+</div>
+
+<div class="actions">
+
+<button class="action-btn like-btn" onclick="showMatch()">
+❤️ Like Back
+</button>
+
+<button class="action-btn view-btn" onclick="location.href='viewprofile.html?id=user2'">
+👁 View
+</button>
+
+<button class="action-btn pass-btn">
+❌ Pass
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Add more cards here later -->
+
+</main>
+
+<div class="match-popup" id="matchPopup">
+
+<h2>
+
+💕 It's a Match!
+
+</h2>
+
+<p>
+
+You both liked each other.
+Start chatting now.
+
+</p>
+
+<button class="start-chat"
+
+onclick="location.href='messages.html?id=user1'">
+
+💬 Start Chat
+
+</button>
+
+</div>
+
+<script>
+
+function showMatch(){
+
+document.getElementById("matchPopup").classList.add("show");
+
+}
+
+</script>
+
+</body>
+
+</html>
