@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purpleLight:#A779FF;
+--text:#ffffff;
+--grey:#A8A8A8;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+img{
+
+display:block;
+width:100%;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--purple);
+border-radius:20px;
+
+}
+
+/* =========================
+APP BAR
+========================= */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:20px;
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 18px rgba(122,60,255,.45);
+
+}
+
+/* =========================
+PROFILE HEADER
+========================= */
+
+.profile-header{
+
+margin-top:90px;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding:20px;
+
+}
+
+.profile-photo{
+
+width:140px;
+height:140px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+border:4px solid var(--purple);
+
+box-shadow:0 0 30px rgba(122,60,255,.45);
+
+}
+
+.profile-photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.profile-name{
+
+margin-top:18px;
+
+font-size:28px;
+
+font-weight:700;
+
+}
+
+.profile-age{
+
+margin-top:6px;
+
+color:#c8c8c8;
+
+font-size:16px;
+
+}
+
+.edit-btn{
+
+margin-top:22px;
+
+padding:14px 30px;
+
+border-radius:30px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:#fff;
+
+font-size:15px;
+
+font-weight:600;
+
+box-shadow:0 0 22px rgba(122,60,255,.45);
+
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:12px;
+
+padding:0 18px;
+
+margin-top:10px;
+
+}
+
+.stat-card{
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:20px;
+
+padding:18px;
+
+text-align:center;
+
+}
+
+.stat-card h2{
+
+font-size:24px;
+
+color:#7A3CFF;
+
+margin-bottom:6px;
+
+}
+
+.stat-card p{
+
+font-size:13px;
+
+color:#9d9d9d;
+
+}
+
+/* =========================
+SECTION
+========================= */
+
+.section{
+
+margin:22px 18px;
+
+padding:20px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.05);
+
+border-radius:22px;
+
+}
+
+.section h3{
+
+margin-bottom:14px;
+
+font-size:18px;
+
+}
+
+.section p{
+
+line-height:1.8;
+
+color:#cfcfcf;
+
+}
+
+.chips{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:12px;
+
+}
+
+.chip{
+
+padding:10px 16px;
+
+background:rgba(255,255,255,.05);
+
+border-radius:30px;
+
+font-size:14px;
+
+}
+
+.gallery{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:15px;
+
+}
+
+.gallery img{
+
+height:170px;
+
+object-fit:cover;
+
+border-radius:18px;
+
+transition:.3s;
+
+}
+
+.gallery img:hover{
+
+transform:scale(1.03);
+
+}
+/* =========================
+BOTTOM ACTIONS
+========================= */
+
+.bottom-actions{
+
+position:fixed;
+
+left:0;
+right:0;
+bottom:0;
+
+display:flex;
+
+gap:12px;
+
+padding:16px;
+
+background:rgba(5,5,5,.95);
+
+backdrop-filter:blur(18px);
+
+border-top:1px solid rgba(255,255,255,.06);
+
+}
+
+.action-btn{
+
+flex:1;
+
+height:56px;
+
+border-radius:18px;
+
+font-size:15px;
+
+font-weight:600;
+
+color:#fff;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+box-shadow:0 0 18px rgba(122,60,255,.35);
+
+}
+
+.logout-btn{
+
+background:#242424;
+
+}
+
+.bottom-space{
+
+height:100px;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:600px;
+
+margin:auto;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<div class="title">
+My Profile
+</div>
+
+<button class="icon-btn">
+
+<span class="material-symbols-rounded">
+settings
+</span>
+
+</button>
+
+</header>
+
+<div class="profile-header">
+
+<div class="profile-photo">
+
+<img src="https://picsum.photos/400?random=70">
+
+</div>
+
+<div class="profile-name">
+
+John Anderson
+
+</div>
+
+<div class="profile-age">
+
+24 Years • Male
+
+</div>
+
+<button
+class="edit-btn"
+onclick="location.href='editprofile.html'">
+
+Edit Profile
+
+</button>
+
+</div>
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h2>128</h2>
+
+<p>Likes</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>34</h2>
+
+<p>Matches</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>89%</h2>
+
+<p>Profile</p>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>About Me</h3>
+
+<p>
+
+Software Engineer 👨‍💻 • Traveller ✈️ • Coffee Lover ☕ •
+Looking for meaningful conversations and long-term connections.
+
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>Interests</h3>
+
+<div class="chips">
+
+<div class="chip">Travel</div>
+
+<div class="chip">Music</div>
+
+<div class="chip">Gym</div>
+
+<div class="chip">Movies</div>
+
+<div class="chip">Photography</div>
+
+<div class="chip">Cooking</div>
+
+<div class="chip">Gaming</div>
+
+<div class="chip">Reading</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>Gallery</h3>
+
+<div class="gallery">
+
+<img src="https://picsum.photos/400?random=71">
+
+<img src="https://picsum.photos/400?random=72">
+
+<img src="https://picsum.photos/400?random=73">
+
+<img src="https://picsum.photos/400?random=74">
+
+</div>
+
+</div>
+
+<div class="bottom-space"></div>
+
+<div class="bottom-actions">
+
+<button
+class="action-btn"
+onclick="location.href='editprofile.html'">
+
+Edit
+
+</button>
+
+<button
+class="action-btn logout-btn"
+onclick="location.href='index.html'">
+
+Logout
+
+</button>
+
+</div>
+
+</body>
+
+</html>
