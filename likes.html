@@ -381,7 +381,35 @@ margin:auto;
 }
 
 }
+.close-popup{
 
+position:absolute;
+
+top:14px;
+right:14px;
+
+width:38px;
+height:38px;
+
+border-radius:50%;
+
+background:#232323;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:white;
+
+}
+
+.close-popup:hover{
+
+background:#7A3CFF;
+
+}
 </style>
 
 </head>
@@ -524,6 +552,14 @@ Alex, 26
 
 <div class="match-popup" id="matchPopup">
 
+<button class="close-popup" onclick="closeMatchPopup()">
+
+<span class="material-symbols-rounded">
+close
+</span>
+
+</button>
+
 <h2>
 
 💕 It's a Match!
@@ -533,12 +569,12 @@ Alex, 26
 <p>
 
 You both liked each other.
-Start chatting now.
+Would you like to start chatting now?
 
 </p>
 
-<button class="start-chat"
-
+<button
+class="start-chat"
 onclick="location.href='messages.html?id=user1'">
 
 💬 Start Chat
@@ -551,11 +587,23 @@ onclick="location.href='messages.html?id=user1'">
 
 function showMatch(){
 
-document.getElementById("matchPopup").classList.add("show");
+document
+.getElementById("matchPopup")
+.classList.add("show");
+
+}
+
+function closeMatchPopup(){
+
+document
+.getElementById("matchPopup")
+.classList.remove("show");
 
 }
 
 </script>
+
+
 
 </body>
 
