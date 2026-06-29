@@ -1,17 +1,12 @@
 import { auth, db } from "./firebase.js";
 
 import {
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
-doc,
-getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-import {
-setDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  auth,
+  db,
+  doc,
+  getDoc,
+  setDoc
+} from "./firebase.js";
 const username=document.getElementById("username");
 const dob=document.getElementById("dob");
 
