@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#fff;
+--grey:#9d9d9d;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+button{
+
+border:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:white;
+
+}
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+}
+
+.title{
+
+font-size:20px;
+
+font-weight:700;
+
+}
+
+main{
+
+padding:90px 18px 120px;
+
+}
+
+.hero{
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+border-radius:30px;
+
+padding:35px 22px;
+
+text-align:center;
+
+box-shadow:0 0 35px rgba(122,60,255,.45);
+
+margin-bottom:24px;
+
+}
+
+.hero span{
+
+font-size:65px;
+
+display:block;
+
+margin-bottom:12px;
+
+}
+
+.hero h1{
+
+font-size:30px;
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+line-height:1.8;
+
+opacity:.95;
+
+}
+
+.section-title{
+
+font-size:20px;
+
+font-weight:600;
+
+margin-bottom:18px;
+
+}
+
+.feature{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:18px;
+
+margin-bottom:15px;
+
+background:#121212;
+
+border-radius:22px;
+
+border:1px solid rgba(255,255,255,.05);
+
+}
+
+.feature-icon{
+
+width:55px;
+
+height:55px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:18px;
+
+background:rgba(122,60,255,.18);
+
+}
+
+.feature-icon .material-symbols-rounded{
+
+color:#A779FF;
+
+}
+
+.feature h3{
+
+font-size:16px;
+
+margin-bottom:4px;
+
+}
+
+.feature p{
+
+font-size:13px;
+
+color:#bdbdbd;
+
+line-height:1.6;
+
+}
+
+.plan{
+
+margin-top:28px;
+
+background:#121212;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,.05);
+
+padding:22px;
+
+}
+
+.plan h2{
+
+font-size:22px;
+
+margin-bottom:8px;
+
+}
+
+.price{
+
+font-size:34px;
+
+font-weight:700;
+
+color:#A779FF;
+
+margin-bottom:16px;
+
+}
+
+.price small{
+
+font-size:15px;
+
+color:#bdbdbd;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="title">
+
+Premium
+
+</div>
+
+<div style="width:44px;"></div>
+
+</header>
+
+<main>
+
+<div class="hero">
+
+<span>💎</span>
+
+<h1>Vivaha Premium</h1>
+
+<p>
+
+Unlock unlimited connections and enjoy the complete premium dating experience.
+
+</p>
+
+</div>
+
+<div class="section-title">
+
+Premium Features
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+<span class="material-symbols-rounded">
+
+favorite
+
+</span>
+
+</div>
+
+<div>
+
+<h3>Unlimited Likes</h3>
+
+<p>Like as many profiles as you want without daily limits.</p>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+<span class="material-symbols-rounded">
+
+visibility
+
+</span>
+
+</div>
+
+<div>
+
+<h3>See Who Liked You</h3>
+
+<p>View everyone who has already liked your profile.</p>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+<span class="material-symbols-rounded">
+
+rocket_launch
+
+</span>
+
+</div>
+
+<div>
+
+<h3>Profile Boost</h3>
+
+<p>Appear first in nearby users and get more profile views.</p>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+<span class="material-symbols-rounded">
+
+travel_explore
+
+</span>
+
+</div>
+
+<div>
+
+<h3>Advanced Filters</h3>
+
+<p>Search by age, interests, location, and preferences.</p>
+
+</div>
+
+</div>
+
+<div class="feature">
+
+<div class="feature-icon">
+
+<span class="material-symbols-rounded">
+
+mark_chat_read
+
+</span>
+
+</div>
+
+<div>
+
+<h3>Read Receipts</h3>
+
+<p>Know when your messages have been read.</p>
+
+</div>
+
+</div>
+
+<div class="plan">
+
+<h2>Monthly Plan</h2>
+
+<div class="price">
+
+₹299 <small>/ month</small>
+
+</div>
+
+<button style="width:100%;height:56px;border-radius:18px;background:linear-gradient(135deg,#7A3CFF,#A779FF);color:#fff;font-size:16px;font-weight:600;">
+
+Upgrade Now
+
+</button>
+
+</div>
+
+<div class="plan" style="margin-top:20px;">
+
+<h2>Yearly Plan</h2>
+
+<div class="price">
+
+₹2,499 <small>/ year</small>
+
+</div>
+
+<button style="width:100%;height:56px;border-radius:18px;background:#242424;color:#fff;font-size:16px;font-weight:600;">
+
+Best Value ⭐
+
+</button>
+
+</div>
+
+<div class="plan" style="margin-top:20px;">
+
+<h2>Frequently Asked Questions</h2>
+
+<p style="margin-top:12px;color:#cfcfcf;line-height:1.8;">
+
+<b>Can I cancel anytime?</b><br>
+Yes, you can cancel your subscription at any time.
+
+<br><br>
+
+<b>Will my chats remain?</b><br>
+Yes. Your chats and matches remain even if Premium expires.
+
+<br><br>
+
+<b>Can I upgrade later?</b><br>
+Absolutely. You can purchase Premium whenever you want.
+
+</p>
+
+</div>
+
+<button style="width:100%;height:54px;margin-top:24px;border-radius:18px;background:#232323;color:white;font-size:16px;font-weight:600;">
+
+Restore Purchase
+
+</button>
+
+</main>
+
+</body>
+
+</html>
