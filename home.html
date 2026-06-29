@@ -740,6 +740,8 @@ opacity:0;
 
 visibility:hidden;
 
+pointer-events:none;
+
 }
 
 .loader{
@@ -1229,18 +1231,26 @@ notifications
     </nav>
 
     <script type="module" src="home.js"></script>
-    <script>
-window.addEventListener("load", () => {
+<script>
 
-setTimeout(() => {
+window.addEventListener("load",()=>{
 
-document
-.getElementById("splashLoader")
-.classList.add("hide");
+const splash=document.getElementById("splashLoader");
+
+setTimeout(()=>{
+
+splash.classList.add("hide");
+
+setTimeout(()=>{
+
+splash.remove();
+
+},600);
 
 },3000);
-    
+
 });
-    </script>
+
+</script>
 </body>
 </html>
