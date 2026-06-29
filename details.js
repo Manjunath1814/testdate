@@ -9,6 +9,9 @@ doc,
 getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+import {
+setDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 const username=document.getElementById("username");
 const dob=document.getElementById("dob");
 
