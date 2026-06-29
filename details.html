@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0">
+
+<title>Complete Profile</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+rel="stylesheet">
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--white:#fff;
+--grey:#a6a6a6;
+
+}
+
+body{
+
+background:var(--bg);
+
+color:var(--white);
+
+}
+
+main{
+
+max-width:600px;
+
+margin:auto;
+
+padding:35px 20px 120px;
+
+}
+
+.logo{
+
+width:95px;
+height:95px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#121212;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+box-shadow:0 0 30px rgba(122,60,255,.35);
+
+margin-bottom:25px;
+
+}
+
+.logo img{
+
+width:62px;
+
+}
+
+h1{
+
+text-align:center;
+
+font-size:30px;
+
+margin-bottom:8px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+color:var(--grey);
+
+line-height:1.8;
+
+margin-bottom:35px;
+
+}
+
+.section{
+
+background:var(--card);
+
+border-radius:25px;
+
+padding:22px;
+
+margin-bottom:22px;
+
+border:1px solid rgba(255,255,255,.06);
+
+}
+
+.label{
+
+display:block;
+
+font-size:15px;
+
+font-weight:600;
+
+margin-bottom:12px;
+
+}
+
+.input{
+
+width:100%;
+
+height:58px;
+
+padding:0 18px;
+
+border-radius:18px;
+
+border:none;
+
+background:#1a1a1a;
+
+color:white;
+
+font-size:15px;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:15px;
+
+margin-top:15px;
+
+}
+
+.option{
+
+height:95px;
+
+background:#1a1a1a;
+
+border-radius:20px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+cursor:pointer;
+
+border:2px solid transparent;
+
+transition:.35s;
+
+}
+
+.option.active{
+
+border-color:var(--purple);
+
+background:rgba(122,60,255,.12);
+
+box-shadow:0 0 20px rgba(122,60,255,.25);
+
+}
+
+.option .emoji{
+
+font-size:34px;
+
+margin-bottom:8px;
+
+}
+
+.option h3{
+
+font-size:15px;
+
+font-weight:600;
+
+}
+
+.full{
+
+grid-column:1/3;
+
+}
+
+.location-card{
+
+text-align:center;
+
+}
+
+.location-btn{
+
+width:100%;
+
+height:58px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+margin-top:18px;
+
+box-shadow:0 0 20px rgba(122,60,255,.35);
+
+}
+
+.save-btn{
+
+width:100%;
+
+height:60px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+box-shadow:0 0 25px rgba(122,60,255,.45);
+
+margin-top:10px;
+
+}
+
+.loading{
+
+display:none;
+
+margin-top:18px;
+
+text-align:center;
+
+color:#bdbdbd;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<main>
+
+<div class="logo">
+
+<img src="images/logo.png">
+
+</div>
+
+<h1>
+
+Complete Profile
+
+</h1>
+
+<p class="subtitle">
+
+Tell us about yourself to discover nearby people who match your preferences.
+
+</p>
+
+<div class="section">
+
+<label class="label">
+
+Username
+
+</label>
+
+<input
+id="username"
+class="input"
+type="text"
+placeholder="Enter username">
+
+</div>
+
+<div class="section">
+
+<label class="label">
+
+Date of Birth
+
+</label>
+
+<input
+id="dob"
+class="input"
+type="date">
+
+</div>
+
+<div class="section">
+
+<label class="label">
+
+I am
+
+</label>
+
+<div class="grid">
+
+<div
+class="option"
+id="male">
+
+<div class="emoji">
+
+👨
+
+</div>
+
+<h3>
+
+Man
+
+</h3>
+
+</div>
+
+<div
+class="option"
+id="female">
+
+<div class="emoji">
+
+👩
+
+</div>
+
+<h3>
+
+Woman
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+<div class="section">
+
+<label class="label">
+
+Interested In
+
+</label>
+
+<div class="grid" id="interestGrid">
+
+<div
+class="option interest-option"
+data-value="Men">
+
+<div class="emoji">
+
+👨
+
+</div>
+
+<h3>
+
+Men
+
+</h3>
+
+</div>
+
+<div
+class="option interest-option"
+data-value="Women">
+
+<div class="emoji">
+
+👩
+
+</div>
+
+<h3>
+
+Women
+
+</h3>
+
+</div>
+
+<div
+class="option interest-option full"
+data-value="Everyone">
+
+<div class="emoji">
+
+🌈
+
+</div>
+
+<h3>
+
+Everyone
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section location-card">
+
+<label class="label">
+
+Location Access
+
+</label>
+
+<p style="color:#a6a6a6;line-height:1.8;">
+
+Allow your location so we can show nearby people around you.
+
+</p>
+
+<button
+id="locationBtn"
+class="location-btn">
+
+📍 Allow Location
+
+</button>
+
+</div>
+
+<button
+id="continueBtn"
+class="save-btn">
+
+Continue
+
+</button>
+
+<div
+id="loading"
+class="loading">
+
+Saving your profile...
+
+</div>
+
+</main>
+
+<script type="module" src="details.js"></script>
+
+</body>
+
+</html>
