@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#ffffff;
+--grey:#A0A0A0;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+a{
+
+text-decoration:none;
+color:inherit;
+
+}
+
+button{
+
+border:none;
+outline:none;
+cursor:pointer;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#7A3CFF;
+border-radius:20px;
+
+}
+
+/* =========================
+TOP BAR
+========================= */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:20px;
+
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 18px rgba(122,60,255,.4);
+
+}
+
+/* =========================
+MAIN
+========================= */
+
+main{
+
+padding:90px 18px 100px;
+
+}
+
+.mark-read{
+
+width:100%;
+
+height:52px;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-size:15px;
+
+font-weight:600;
+
+margin-bottom:22px;
+
+box-shadow:0 0 20px rgba(122,60,255,.35);
+
+}
+
+/* =========================
+NOTIFICATION CARD
+========================= */
+
+.notification{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:16px;
+
+margin-bottom:16px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.05);
+
+border-radius:20px;
+
+transition:.3s;
+
+}
+
+.notification:hover{
+
+transform:translateY(-2px);
+
+box-shadow:0 0 20px rgba(122,60,255,.18);
+
+}
+
+.avatar{
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+flex-shrink:0;
+
+}
+
+.avatar img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.info{
+
+flex:1;
+
+}
+
+.info h4{
+
+font-size:16px;
+
+margin-bottom:5px;
+
+}
+
+.info p{
+
+font-size:14px;
+
+color:#bfbfbf;
+
+line-height:1.5;
+
+}
+
+.time{
+
+font-size:12px;
+
+color:#888;
+
+margin-top:6px;
+
+}
+
+.unread{
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#7A3CFF;
+
+box-shadow:0 0 12px rgba(122,60,255,.8);
+
+}
+
+.empty{
+
+text-align:center;
+
+padding:80px 20px;
+
+display:none;
+
+}
+
+.empty span{
+
+font-size:80px;
+
+color:#7A3CFF;
+
+display:block;
+
+margin-bottom:15px;
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+    <button class="icon-btn" onclick="history.back()">
+        <span class="material-symbols-rounded">arrow_back</span>
+    </button>
+
+    <div class="title">
+        Notifications
+    </div>
+
+    <button class="icon-btn">
+        <span class="material-symbols-rounded">notifications</span>
+    </button>
+
+</header>
+
+<main>
+
+<button class="mark-read">
+    Mark All as Read
+</button>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=101">
+    </div>
+
+    <div class="info">
+        <h4>❤️ Alex liked your profile</h4>
+        <p>Someone is interested in getting to know you.</p>
+        <div class="time">2 minutes ago</div>
+    </div>
+
+    <div class="unread"></div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=102">
+    </div>
+
+    <div class="info">
+        <h4>🎉 It's a Match with Sophia</h4>
+        <p>You both liked each other. Start chatting now!</p>
+        <div class="time">10 minutes ago</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=103">
+    </div>
+
+    <div class="info">
+        <h4>💬 Emma sent you a message</h4>
+        <p>Tap to open your conversation.</p>
+        <div class="time">25 minutes ago</div>
+    </div>
+
+    <div class="unread"></div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=104">
+    </div>
+
+    <div class="info">
+        <h4>👀 Ryan viewed your profile</h4>
+        <p>Your profile is getting attention.</p>
+        <div class="time">Today</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=105">
+    </div>
+
+    <div class="info">
+        <h4>📍 New member nearby</h4>
+        <p>A new compatible profile joined near your location.</p>
+        <div class="time">Today</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=106">
+    </div>
+
+    <div class="info">
+        <h4>❤️ Olivia liked your profile</h4>
+        <p>Check out their profile and decide what to do next.</p>
+        <div class="time">Yesterday</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=107">
+    </div>
+
+    <div class="info">
+        <h4>🔥 Your profile is trending</h4>
+        <p>More people viewed your profile this week.</p>
+        <div class="time">Yesterday</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=108">
+    </div>
+
+    <div class="info">
+        <h4>💬 Charlotte replied</h4>
+        <p>"Looking forward to talking with you!"</p>
+        <div class="time">2 days ago</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=109">
+    </div>
+
+    <div class="info">
+        <h4>⭐ Complete your profile</h4>
+        <p>Add more photos to improve your visibility.</p>
+        <div class="time">3 days ago</div>
+    </div>
+
+</div>
+
+<div class="notification">
+
+    <div class="avatar">
+        <img src="https://picsum.photos/200?random=110">
+    </div>
+
+    <div class="info">
+        <h4>🎁 Premium offer available</h4>
+        <p>Unlock unlimited likes and advanced filters.</p>
+        <div class="time">This week</div>
+    </div>
+
+</div>
+
+<div class="empty">
+
+<span class="material-symbols-rounded">
+notifications_off
+</span>
+
+<h2>No Notifications Yet</h2>
+
+<p>We'll notify you when someone likes, matches, or messages you.</p>
+
+</div>
+
+</main>
+
+</body>
+
+</html>
