@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Profile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+
+--bg:#050505;
+--card:#121212;
+--purple:#7A3CFF;
+--purple2:#A779FF;
+--text:#ffffff;
+--grey:#A0A0A0;
+
+}
+
+body{
+
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+
+}
+
+button,
+input,
+textarea,
+select{
+
+font-family:inherit;
+outline:none;
+
+}
+
+button{
+
+cursor:pointer;
+border:none;
+
+}
+
+img{
+
+display:block;
+width:100%;
+
+}
+
+.material-symbols-rounded{
+
+font-size:26px;
+color:#fff;
+
+}
+
+::-webkit-scrollbar{
+
+width:5px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--purple);
+border-radius:20px;
+
+}
+
+/* ==========================
+APP BAR
+========================== */
+
+.top-bar{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:70px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 18px;
+
+background:rgba(5,5,5,.92);
+
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+z-index:999;
+
+}
+
+.title{
+
+font-size:20px;
+
+font-weight:600;
+
+}
+
+.icon-btn{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+.icon-btn:hover{
+
+background:rgba(122,60,255,.18);
+
+box-shadow:0 0 18px rgba(122,60,255,.45);
+
+}
+
+/* ==========================
+MAIN
+========================== */
+
+main{
+
+padding:90px 18px 120px;
+
+}
+
+/* ==========================
+PROFILE PHOTO
+========================== */
+
+.photo-section{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+.profile-photo{
+
+width:150px;
+
+height:150px;
+
+border-radius:50%;
+
+overflow:hidden;
+
+border:4px solid var(--purple);
+
+box-shadow:0 0 30px rgba(122,60,255,.4);
+
+}
+
+.profile-photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.change-photo{
+
+margin-top:18px;
+
+padding:12px 24px;
+
+border-radius:30px;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+color:white;
+
+font-weight:600;
+
+}
+
+/* ==========================
+PHOTO GALLERY
+========================== */
+
+.gallery-upload{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:12px;
+
+margin-bottom:28px;
+
+}
+
+.upload-box{
+
+height:110px;
+
+background:#121212;
+
+border:2px dashed rgba(122,60,255,.45);
+
+border-radius:18px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:34px;
+
+color:#7A3CFF;
+
+}
+
+/* ==========================
+FORM
+========================== */
+
+.form-group{
+
+margin-bottom:22px;
+
+}
+
+.form-group label{
+
+display:block;
+
+margin-bottom:10px;
+
+font-size:15px;
+
+font-weight:600;
+
+}
+
+.form-control{
+
+width:100%;
+
+padding:16px;
+
+border-radius:18px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+color:white;
+
+font-size:15px;
+
+}
+
+textarea.form-control{
+
+min-height:130px;
+
+resize:none;
+
+}
+/* ==========================
+SELECT BUTTONS
+========================== */
+
+.option-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:12px;
+
+margin-top:12px;
+
+}
+
+.option{
+
+padding:16px;
+
+text-align:center;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:18px;
+
+transition:.3s;
+
+cursor:pointer;
+
+}
+
+.option.active{
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+border:none;
+
+box-shadow:0 0 20px rgba(122,60,255,.35);
+
+}
+
+.option:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* ==========================
+INTERESTS
+========================== */
+
+.interests{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:10px;
+
+margin-top:12px;
+
+}
+
+.interest{
+
+padding:12px 18px;
+
+background:#121212;
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:30px;
+
+font-size:14px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.interest.active{
+
+background:#7A3CFF;
+
+border:none;
+
+}
+
+.save-btn{
+
+width:100%;
+
+height:58px;
+
+margin-top:30px;
+
+border-radius:18px;
+
+font-size:17px;
+
+font-weight:600;
+
+color:white;
+
+background:linear-gradient(135deg,#7A3CFF,#A779FF);
+
+box-shadow:0 0 20px rgba(122,60,255,.4);
+
+}
+
+@media(min-width:768px){
+
+body{
+
+max-width:650px;
+
+margin:auto;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="top-bar">
+
+<button class="icon-btn" onclick="history.back()">
+
+<span class="material-symbols-rounded">
+arrow_back
+</span>
+
+</button>
+
+<div class="title">
+
+Edit Profile
+
+</div>
+
+<div style="width:44px;"></div>
+
+</header>
+
+<main>
+
+<div class="photo-section">
+
+<div class="profile-photo">
+
+<img src="https://picsum.photos/400?random=90">
+
+</div>
+
+<button class="change-photo">
+
+Change Profile Photo
+
+</button>
+
+</div>
+
+<div class="gallery-upload">
+
+<div class="upload-box">+</div>
+
+<div class="upload-box">+</div>
+
+<div class="upload-box">+</div>
+
+<div class="upload-box">+</div>
+
+<div class="upload-box">+</div>
+
+<div class="upload-box">+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+class="form-control"
+value="John Anderson">
+
+</div>
+
+<div class="form-group">
+
+<label>Date of Birth</label>
+
+<input
+type="date"
+class="form-control">
+
+</div>
+
+<div class="form-group">
+
+<label>Gender</label>
+
+<div class="option-grid">
+
+<div class="option active">
+Male
+</div>
+
+<div class="option">
+Female
+</div>
+
+<div class="option">
+Non-binary
+</div>
+
+<div class="option">
+Transgender
+</div>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Looking For</label>
+
+<div class="option-grid">
+
+<div class="option">
+Men
+</div>
+
+<div class="option active">
+Women
+</div>
+
+<div class="option">
+Everyone
+</div>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>About Me</label>
+
+<textarea class="form-control">Traveller ✈️ Coffee Lover ☕ Looking for meaningful connections.</textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Interests</label>
+
+<div class="interests">
+
+<div class="interest active">Travel</div>
+
+<div class="interest active">Music</div>
+
+<div class="interest">Gym</div>
+
+<div class="interest">Movies</div>
+
+<div class="interest">Photography</div>
+
+<div class="interest">Cooking</div>
+
+<div class="interest">Gaming</div>
+
+<div class="interest">Reading</div>
+
+<div class="interest">Hiking</div>
+
+<div class="interest">Pets</div>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input
+type="text"
+class="form-control"
+value="Bengaluru, Karnataka">
+
+</div>
+
+<button class="save-btn">
+
+Save Changes
+
+</button>
+
+</main>
+
+</body>
+
+</html>
